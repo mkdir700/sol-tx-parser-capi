@@ -28,6 +28,7 @@ $(BUILD_DIR):
 
 $(BUILD_DIR)/$(OUTPUT): $(BUILD_DIR)
 	CGO_ENABLED=1 $(GOBUILD) -buildmode=c-shared -o $@ ./capi
+	mkdir -p python/src/solana_tx_parser/lib/
 	cp $(BUILD_DIR)/$(OUTPUT) python/src/solana_tx_parser/lib/
 	cp $(BUILD_DIR)/*.h python/src/solana_tx_parser/lib/
 
