@@ -12,6 +12,7 @@ license = {text = "MIT"}
 classifiers = [
     "Operating System :: MacOS",
     "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
 ]
 
 [build-system]
@@ -29,4 +30,5 @@ includes = [
     "src/solana_tx_parser/**/*.py",     # Python source files
     "src/solana_tx_parser/lib/*.so",    # Linux
     "src/solana_tx_parser/lib/*.dylib", # macOS
+    "src/solana_tx_parser/lib/*.dll",   # Windows
 ]
