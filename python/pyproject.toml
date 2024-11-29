@@ -21,13 +21,10 @@ test = [
     "pytest>=8.3.3",
 ]
 
-# 添加以下配置来包含 .so 文件
 [tool.pdm.build]
+package-dir = "src"
 includes = [
-    "src/sol_tx_parser/**/*.so",    # Linux
-    "src/sol_tx_parser/**/*.dylib", # macOS
-    "src/sol_tx_parser/**/*.dll",   # Windows
-    "build/*.so",                   # Linux build
-    "build/*.dylib",                # macOS build
-    "build/*.dll",                  # Windows build
+    "src/solana_tx_parser/lib/*.so",    # Linux
+    "src/solana_tx_parser/lib/*.dylib", # macOS
+    "src/solana_tx_parser/lib/*.dll",   # Windows
 ]
