@@ -8,7 +8,9 @@ See [python/README.md](python/README.md) for usage with Python.
 
 ## Build
 
-See [Makefile](Makefile) for building the C API and Python bindings.
+```bash
+make
+```
 
 ## License
 
