@@ -32,7 +32,7 @@ jobs:
         ls build/
         cd python
         pdm build
-        pdm publish --repository https://test.pypi.org/legacy/ --username __token__ --password $TEST_PYPI_API_TOKEN
+        pdm publish --repository https://test.pypi.org/legacy/ --username __token__ --password $TEST_PYPI_API_TOKEN --force
 
   deploy:
     needs: test-deploy
