@@ -31,8 +31,10 @@ jobs:
         make
         ls build/
         cd python
+        VERSION=$(python3 -c "import time; print('0.0.1.dev' + time.strftime('%Y%m%d%H%M%S'))")
+        sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
         pdm build
-        pdm publish --repository https://test.pypi.org/legacy/ --username __token__ --password $TEST_PYPI_API_TOKEN --skip-existing
+        pdm publish --repository https://test.pypi.org/legacy/ --username __token__ --password $TEST_PYPI_API_TOKEN
 
   deploy:
     needs: test-deploy
