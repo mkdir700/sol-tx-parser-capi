@@ -5,7 +5,19 @@ GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
 BUILD_DIR=build
 
-all: $(BUILD_DIR)/libsoltxparser.so
+# 检测操作系统
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    OUTPUT=libsoltxparser.dylib
+else ifeq ($(UNAME_S),Linux)
+    OUTPUT=libsoltxparser.so
+else ifeq ($(OS),Windows_NT)
+    OUTPUT=soltxparser.dll
+else
+    $(error Unsupported operating system)
+endif
+
+all: $(BUILD_DIR)/$(OUTPUT)
 
 clean:
 	$(GOCLEAN)
@@ -14,9 +26,9 @@ clean:
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(BUILD_DIR)/libsoltxparser.so: $(BUILD_DIR)
+$(BUILD_DIR)/$(OUTPUT): $(BUILD_DIR)
 	CGO_ENABLED=1 $(GOBUILD) -buildmode=c-shared -o $@ ./capi
-	cp $(BUILD_DIR)/libsoltxparser.so python/src/solana_tx_parser/lib/
-	cp $(BUILD_DIR)/libsoltxparser.h python/src/solana_tx_parser/lib/
+	cp $(BUILD_DIR)/$(OUTPUT) python/src/solana_tx_parser/lib/
+	cp $(BUILD_DIR)/*.h python/src/solana_tx_parser/lib/
 
 
