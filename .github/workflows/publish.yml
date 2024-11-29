@@ -1,0 +1,64 @@
+name: Publish Python Package
+
+on:
+  release:
+    types: [created]
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  test-deploy:
+    runs-on: ubuntu-latest
+    environment: testpypi
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        lfs: true
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install PDM
+      run: |
+        curl -sSL https://pdm.fming.dev/install-pdm.py | python3 -
+    
+    - name: Build and publish to TestPyPI
+      env:
+        TEST_PYPI_API_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      run: |
+        make
+        ls build/
+        cd python
+        pdm build
+        pdm publish --repository https://test.pypi.org/legacy/ --username __token__ --password $TEST_PYPI_API_TOKEN
+
+  deploy:
+    needs: test-deploy
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        lfs: true
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install PDM
+      run: |
+        curl -sSL https://pdm.fming.dev/install-pdm.py | python3 -
+    
+    - name: Build and publish to PyPI
+      env:
+        PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        make
+        ls build/
+        cd python
+        pdm build
+        pdm publish --username __token__ --password $PYPI_API_TOKEN
