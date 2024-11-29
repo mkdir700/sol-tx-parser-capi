@@ -1,52 +1,67 @@
 import ctypes
 import json
 import os
-from typing import Dict, Any
+import platform
+from typing import Any, Dict
 
-if os.name == 'nt':
-    _lib_path = os.path.join(os.path.dirname(__file__), "./lib/libsoltxparser.dll")
-else:
-    _lib_path = os.path.join(os.path.dirname(__file__), "./lib/libsoltxparser.so")
-    
+
+def _get_lib_path():
+    system = platform.system()
+    lib_dir = os.path.join(os.path.dirname(__file__), "lib")
+
+    if system == "Darwin":  # macOS
+        return os.path.join(lib_dir, "libsoltxparser.dylib")
+    elif system == "Linux":  # Linux
+        return os.path.join(lib_dir, "libsoltxparser.so")
+    elif system == "Windows":  # Windows
+        return os.path.join(lib_dir, "soltxparser.dll")
+    else:
+        raise OSError(f"Unsupported operating system: {system}")
+
+
+# Get the library path
+_lib_path = _get_lib_path()
+
 # Load the shared library
 _lib = ctypes.CDLL(_lib_path)
 
+
 class ParseResult(ctypes.Structure):
-    _fields_ = [
-        ("error", ctypes.c_char_p),
-        ("result", ctypes.c_char_p)
-    ]
+    _fields_ = [("error", ctypes.c_char_p), ("result", ctypes.c_char_p)]
+
 
 # Set function argument and return types
 _lib.ParseTransaction.argtypes = [ctypes.c_char_p]
 _lib.ParseTransaction.restype = ParseResult
 _lib.FreeParseResult.argtypes = [ParseResult]
 
+
 def parse_transaction(tx_data: str) -> Dict[str, Any]:
     """Parse a Solana transaction.
-    
+
     Args:
         tx_data: The transaction data as a string
-        
+
     Returns:
         A dictionary containing the parsed transaction data
-        
+
     Raises:
         RuntimeError: If parsing fails
     """
-    result = _lib.ParseTransaction(tx_data.encode('utf-8'))
-    
+    result = _lib.ParseTransaction(tx_data.encode("utf-8"))
+
     try:
         if result.error:
-            raise RuntimeError(result.error.decode('utf-8'))
-            
+            raise RuntimeError(result.error.decode("utf-8"))
+
         if result.result:
-            return json.loads(result.result.decode('utf-8'))
-        
+            return json.loads(result.result.decode("utf-8"))
+
         raise RuntimeError("No result and no error")
-        
+
     finally:
         _lib.FreeParseResult(result)
+
 
 if __name__ == "__main__":
     content = """
