@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PDM
+.pdm-python
+.pdm.toml
+__pypackages__/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Distribution
+dist/
+build/
+*.egg-info/
+.DS_Store
