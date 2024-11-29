@@ -5,9 +5,7 @@ description = "Python bindings for Solana Transaction Parser (tx-parser), enabli
 authors = [
     {name = "mkdir700", email = "mkdir700@gmail.com"},
 ]
-dependencies = [
-    "pytest>=8.3.3",
-]
+dependencies = []
 requires-python = ">=3.8"
 readme = "README.md"
 license = {text = "MIT"}
