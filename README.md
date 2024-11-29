@@ -12,6 +12,10 @@ See [python/README.md](python/README.md) for usage with Python.
 make
 ```
 
+## Thanks
+
+- [tx-parser](https://github.com/0xjeffro/tx-parser)
+
 ## License
 
 See [LICENSE](LICENSE).
