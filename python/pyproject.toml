@@ -1,0 +1,33 @@
+[project]
+name = "solana-tx-parser"
+version = "0.0.1"
+description = "Python bindings for Solana transaction parser"
+authors = [
+    {name = "mkdir700", email = "mkdir700@gmail.com"},
+]
+dependencies = [
+    "pytest>=8.3.3",
+]
+requires-python = ">=3.8"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest>=8.3.3",
+]
+
+# 添加以下配置来包含 .so 文件
+[tool.pdm.build]
+includes = [
+    "src/sol_tx_parser/**/*.so",    # Linux
+    "src/sol_tx_parser/**/*.dylib", # macOS
+    "src/sol_tx_parser/**/*.dll",   # Windows
+    "build/*.so",                   # Linux build
+    "build/*.dylib",                # macOS build
+    "build/*.dll",                  # Windows build
+]
