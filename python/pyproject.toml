@@ -1,6 +1,6 @@
 [project]
 name = "solana-tx-parser"
-version = "0.0.1"
+version = "0.0.2"
 description = "Python bindings for Solana Transaction Parser (tx-parser), enabling Python developers to easily parse and analyze Solana blockchain transactions. This package provides a high-performance C-API wrapper around the original Rust implementation, making blockchain data interpretation accessible in Python while maintaining native-like performance."
 authors = [
     {name = "mkdir700", email = "mkdir700@gmail.com"},
