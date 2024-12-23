@@ -2,7 +2,7 @@ import ctypes
 import json
 import os
 import platform
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
 def _get_lib_path():
@@ -36,7 +36,7 @@ _lib.ParseTransaction.restype = ParseResult
 _lib.FreeParseResult.argtypes = [ParseResult]
 
 
-def parse_transaction(tx_data: str) -> Dict[str, Any]:
+def parse_transaction(tx_data: str) -> List[Dict[str, Any]]:
     """Parse a Solana transaction.
 
     Args:
