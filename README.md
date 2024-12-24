@@ -10,6 +10,7 @@ See [python/README.md](python/README.md) for usage with Python.
 
 ```bash
 make
+cat build
 ```
 
 ## Thanks

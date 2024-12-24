@@ -11,9 +11,15 @@ pip install solana-tx-parser
 ## Usage
 
 ```python
+import json
 from solana_tx_parser import parse_transaction
 
-tx_json = '...'  # Your transaction JSON string
+tx_data = {
+    "jsonrpc": "2.0",
+    "result": ...,  # Your transaction JSON string
+    "id": 1,
+}
+tx_json = json.dumps(tx_data)
 result = parse_transaction(tx_json)
 ```
 
