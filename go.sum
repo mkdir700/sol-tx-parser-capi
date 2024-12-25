@@ -1,7 +1,7 @@
 filippo.io/edwards25519 v1.0.0-rc.1 h1:m0VOOB23frXZvAOK44usCgLWvtsxIoMCTBGJZlpmGfU=
 filippo.io/edwards25519 v1.0.0-rc.1/go.mod h1:N1IkdkCkiLB6tki+MYJoSx2JTY9NUlxZE7eHn5EwJns=
-github.com/0xjeffro/tx-parser v0.3.1 h1:p+0iGUVrN5jGalYvHu5AtOUicftKeIs+ntKuVANT3jE=
-github.com/0xjeffro/tx-parser v0.3.1/go.mod h1:9fwFwe6j5iW3L2y7Zwv75aC9dHWtKJinQ+iCMLViI+I=
+github.com/0xjeffro/tx-parser v0.4.0 h1:mYPJiAMWQ+r7J3/HxbEziqrd9cCXW+EyARBhSiW0Z8w=
+github.com/0xjeffro/tx-parser v0.4.0/go.mod h1:9fwFwe6j5iW3L2y7Zwv75aC9dHWtKJinQ+iCMLViI+I=
 github.com/benbjohnson/clock v1.1.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
 github.com/benbjohnson/clock v1.3.0 h1:ip6w0uFQkncKQ979AypyG0ER7mqUSBdKLOgAle/AT8A=
 github.com/blendle/zapdriver v1.3.1 h1:C3dydBOWYRiOk+B8X9IVZ5IOe+7cl+tGOexN4QqHfpE=
