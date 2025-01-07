@@ -2,7 +2,7 @@ module sol-tx-parser-capi
 
 go 1.20
 
-require github.com/0xjeffro/tx-parser v0.4.0
+require github.com/0xjeffro/tx-parser v0.4.2
 
 require (
 	filippo.io/edwards25519 v1.0.0-rc.1 // indirect
